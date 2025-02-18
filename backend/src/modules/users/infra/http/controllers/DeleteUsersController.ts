@@ -8,7 +8,7 @@ class DeleteUsersController {
     const userId = request.user.id;
     const userRepository = getRepository(User);
 
-    const user = await userRepository.findOne(userId);
+    const user = await userRepository.findOne({ where: { id: userId } });
 
     if (!user) {
       throw new AppError('User not found', 404);
